@@ -1,38 +1,23 @@
 FROM python:3.11-slim
 
-# Set working directory
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates curl git build-essential gnupg && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get update && apt-get install -y nodejs && \
+    npm install -g @google/gemini-cli && \
+    rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
+COPY . /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy requirements first for better caching
-COPY requirements.txt .
-
-# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
-COPY . .
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# Create non-root user for security
-RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
-USER appuser
+EXPOSE 8888
 
-# Expose ports (8888 for compatibility, 7860 for Hugging Face)
-EXPOSE 8888 7860
-
-# Set environment variables
-ENV PYTHONPATH=/app
-ENV HOST=0.0.0.0
-ENV PORT=7860
-
-# Health check (use PORT environment variable)
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:${PORT}/health || exit 1
-
-# Run the application using app.py (Hugging Face compatible entry point)
-CMD ["python", "app.py"]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["python", "run.py"]
