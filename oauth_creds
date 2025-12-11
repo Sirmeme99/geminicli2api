@@ -1,0 +1,14 @@
+{
+  "client_id": "681255809395-oo8ft2oprdrnp9e3aqf6av3hmdib135j.apps.googleusercontent.com",
+  "client_secret": "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",
+  "token": "ya29.a0Aa7pCA-ZAySB-jL7ibhxKwsodrzQFexTpbB-M6rh_r7dRKq781TYpf-EW7nmCd7mv0jW61kN5W7thWha5AU_4122sL6UO-XExjmskkTuiUHkLsHVIgsR6hlHTWUSx8tPoxh_hwC6EcMKxowt5Q4RvdCkXRD7KssKMODN30A3qpfkC7NSkQS6kHTRfMfbAaRM4-kgWj4eKosgaCgYKATwSARcSFQHGX2Mi2k1BQGlNZbgEer1jcieUWA0211",
+  "refresh_token": "1//0hY41Cc8AE734CgYIARAAGBESNwF-L9Irf8CotxBu-v3X1kv6pexlpROHhG1IK-H2SAoW53yUlohyxH9mbcaamMbL2_f9iethD7I",
+  "scopes": [
+    "https://www.googleapis.com/auth/cloud-platform",
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/userinfo.profile"
+  ],
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "expiry": "2025-12-11T01:39:25+00:00",
+  "project_id": "annular-sky-xp9ff"
+}
